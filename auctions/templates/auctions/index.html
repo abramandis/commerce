@@ -1,0 +1,32 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+    <p></p>
+    <ul>
+        {% for listing in listings %}
+            <li class="listing-item">
+                <div class="listing-image">
+                    <a href="{% url 'listing' listing.id %}">
+                        <img src="{{ listing.image_url|default:'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg' }}">
+                    </a>
+                </div>
+                <div class="listing-details">
+                    <a href="{% url 'listing' listing.id %}"><h2>{{ listing.title }}</h2></a>
+                    <p>{{ listing.description }}</p>
+                    {% if not listing.highest_bid %}
+                        <!-- Render starting bid only if highest bid has not been made -->
+                        <p><strong>Starting Bid:</strong> ${{ listing.starting_bid }}</p>
+                    {% endif %}
+    
+                    {% if listing.highest_bid %}
+                        <p><strong>Highest Bid:</strong> ${{ listing.highest_bid.amount }}</p>
+                    {% endif %}
+
+                    <p><strong>Category:</strong> {{ listing.get_category_display }}</p>
+                    <p><strong>Created By:</strong> {{ listing.created_by }} @ {{ listing.created_at }}</p>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

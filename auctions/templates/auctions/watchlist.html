@@ -1,0 +1,31 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Watchlist</h2>
+    <ul>
+        {% for listing in watchlist %}
+            <li class="listing-item">
+                <div class="listing-image">
+                    <a href="{% url 'listing' listing.id %}">
+                        <img src="{{ listing.image_url }}" alt="{{ listing.title }}">
+                    </a>
+                </div>
+                <div class="listing-details">
+                    <a href="{% url 'listing' listing.id %}"><h2>{{ listing.title }}</h2></a>
+                    <p>{{ listing.description }}</p>
+                    <p><strong>Starting Bid:</strong> {{ listing.starting_bid }}</p>
+                    <p><strong>Highest Bid:</strong> {{ listing.highest_bid }}</p>
+                </div>
+            </li>
+            <p>
+            {% if user.is_authenticated %}
+                <form action="{% url 'remove_from_watchlist' listing.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Remove from Watchlist</button>
+                </form>
+            {% endif %}
+            </p>
+        {% endfor %}
+    </ul>
+    
+{% endblock %}

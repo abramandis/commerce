@@ -1,0 +1,51 @@
+body {
+    padding: 10px;
+}
+
+.listing-item {
+    display: flex; 
+    margin-bottom: 20px;
+}
+
+.listing-image {
+    flex: 0 0 auto; 
+    margin-right: 20px; 
+}
+
+.listing-image img {
+    max-width: 150px; 
+    height: auto; 
+    display: block; 
+    margin-bottom: 10px; 
+}
+
+.listing-details {
+    flex: 1; 
+}
+
+.listing-details h2 {
+    font-weight: bold; 
+    font-size: 18px; 
+}
+
+.listing-details p {
+    margin: 5px 0; 
+}
+
+.bid-form .form-group {
+    margin-bottom: 15px; 
+}
+
+.bid-form .input-group {
+    max-width: 200px; 
+}
+
+.bid-form .btn-primary {
+    margin-left: 10px; 
+}
+
+.comment-details p {
+    border-bottom: 1px solid #ff0000; 
+    padding-bottom: 5px; 
+    margin-bottom: 5px; 
+}
